@@ -1,0 +1,55 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
+
+<link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+        var result='';
+
+        function playSound( url ){
+  document.getElementById("sound").innerHTML="<embed src='"+url+"' hidden=true autostart=true loop=false>";
+}
+
+        $(document).keydown(function(e) {
+    switch(e.which) {
+        case 78: // left
+                result = '0';
+                document.body.style.backgroundColor='red';
+                var audioElement = document.createElement('audio');
+                audioElement.setAttribute('src', '/static/fall.mp3');
+                audioElement.play();
+        break;
+
+        case 83: // up
+                result = '1';
+                document.body.style.backgroundColor='green';
+
+                var audioElement = document.createElement('audio');
+                audioElement.setAttribute('src', '/static/xylophone_se.mp3');
+                audioElement.play();
+            break;
+        case 13:
+                window.location.href = '/id/{{ question.id }}/'+result;
+            break;
+
+
+        default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+});
+    </script>
+</head>
+<body>
+<div class="question" align="center">
+{{ question.task }}
+</div>
+<div id="sound"></div>
+
+    </body>
+</html>

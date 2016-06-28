@@ -1,0 +1,32 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
+
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+<div class="top">
+Na ťahu je tím <font color="#CCAAFF">{{ naTahu }}</font>
+</div>
+<table border="1">
+{% for name, category in questions.items %}
+    <tr>
+    <td>{{ name }}</td>
+    {% for question in category %}
+        <td>
+        {% if question.visited %}
+            <img src="/static/visited.png" width="80px">
+            {% else %}
+        <a href="/{{ question.id }}">{{ question.points }}</a>
+        {% endif %}
+        </td>
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
